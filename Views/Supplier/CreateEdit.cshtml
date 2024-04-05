@@ -1,0 +1,37 @@
+﻿@model FinalProject.ViewModels.SupplierCreateEditViewModel
+
+@{
+    
+    string pageTitle = Model.SupplierId == 0 ? "Create Supplier" : "Edit Supplier";
+    string formAction = Model.SupplierId == 0 ? "Create" : "Edit";
+}
+
+<h2>@pageTitle</h2>
+
+<form asp-action="@formAction" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    @if (Model.SupplierId != 0)
+    {
+        <input type="hidden" asp-for="SupplierId" />
+    }
+
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Address" class="control-label"></label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PhoneNumber" class="control-label"></label>
+        <input asp-for="PhoneNumber" class="form-control" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>

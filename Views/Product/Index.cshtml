@@ -1,0 +1,93 @@
+﻿@model IEnumerable<FinalProject.Models.Product>
+@{
+    ViewData["Title"] = "Product Index";
+}
+
+<h2>Product Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Supplier
+            </th>
+            <th>
+                Image
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @if (item.Category != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.Category.Name)
+                    }
+                    else
+                    {
+                        <span>None</span>
+                    }
+                </td>
+                <td>
+                    @if (item.Supplier != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.Supplier.Name)
+                    }
+                    else
+                    {
+                        <span>None</span>
+                    }
+                </td>
+                <td>
+                    @if (item.Image != null)
+                    {
+                        <img src="@item.Image" alt="Product Image" style="max-width: 100px;" />
+                    }
+                    else
+                    {
+                        <img src="https://e7.pngegg.com/pngimages/980/697/png-clipart-empty-set-null-set-computer-icons-mathematics-mathematics-triangle-symbol-thumbnail.png" alt="Default Image" style="max-width: 100px;" />
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                    <a asp-action="Detail" asp-route-id="@item.ProductId">Detail</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

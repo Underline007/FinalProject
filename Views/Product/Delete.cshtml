@@ -1,0 +1,28 @@
+﻿@model FinalProject.Models.Product
+
+<h2>Delete Product</h2>
+
+<div>
+    <h4>Are you sure you want to delete this product?</h4>
+    <div>
+        <h3>@Model.Name</h3>
+        <p>@Model.Description</p>
+        <p>Price: @Model.Price</p>
+        <p>Quantity: @Model.Quantity</p>
+        <p>Category: @Model.Category.Name</p>
+        <p>Supplier: @Model.Supplier.Name</p>
+        @if (!string.IsNullOrEmpty(Model.Image))
+        {
+            <img src="@Model.Image" alt="Product Image" style="max-width: 100px;" />
+        }
+        else
+        {
+            <img src="https://e7.pngegg.com/pngimages/980/697/png-clipart-empty-set-null-set-computer-icons-mathematics-mathematics-triangle-symbol-thumbnail.png" alt="Product Image" style="max-width: 100px;" />
+        }
+    </div>
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="ProductId" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
